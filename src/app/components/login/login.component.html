@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-center">
+  <div class="col-lg-4 " style="padding-top: 30px; padding-bottom: 30px;" >
+    <h1 style="text-align: center;">{{title}}</h1>
+    <h3 style="text-align: center;">{{desc}}</h3>
+    <div class="alert alert-danger" *ngIf="status=='error'" >
+      Invalid email or password
+    </div>
+    <div class="card">
+      <div class="text-center"  style="padding-top: 50px;">
+        <img class="rounded-circle shadow-4-strong" width="40%" src="assets/img/linux-avatar.png"  alt="...">
+      </div>
+      <div class="card-body text-left">
+        <form (ngSubmit)="login()" [formGroup]="myForm" >
+          <input [class.is-invalid]="myForm.get('email')?.touched && myForm.get('email')?.invalid" type="email" class="form-control" formControlName="email" placeholder="Email" required />
+          <span *ngIf="myForm.get('email')?.touched && myForm.get('email')?.invalid"  style="color: red;">
+            Invalid email
+          </span><br>
+          <input [class.is-invalid]="myForm.get('password')?.touched && myForm.get('password')?.invalid" type="password" class="form-control" formControlName="password" placeholder="Password" minlength="6"  required/>
+          <br><span *ngIf="myForm.get('password')?.touched && myForm.get('password')?.invalid"  style="color: red;">
+            Invalid password
+          </span>
+          <input type="submit"  value="Login" class="btn btn-lg btn-success form-control" [disabled]="!myForm.valid"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
